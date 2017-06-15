@@ -19,7 +19,7 @@ class ContactMap {
     }
     setData(response) {
         let map = this;
-	    let root = d3.select('body');
+	    let root = d3.select("body");
         map.data = new DataStorage(response ,0);
         map.data.sortNodes();
         map.data.sortSites();

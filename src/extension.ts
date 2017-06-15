@@ -36,7 +36,8 @@ export function activate(context: vscode.ExtensionContext) {
         let selection = editor.selection;
         let data = editor.document.getText(selection);
         if(data !== "") {
-            text = text.replace(/setData(.*)/, 'setData(' + data.toString() + ');');
+            data = data.toString().replace(/\r?\n/g, " ");
+            text = text.replace(/setData\(.*\)/, 'setData(' + data.toString() + ');');
             fs.writeFileSync(index, text, 'utf8');
         }
 

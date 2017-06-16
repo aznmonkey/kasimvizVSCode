@@ -1,31 +1,27 @@
 # kasimviz README
 
 ## Features
-Shows a side by side viz of the highlighted json data
+This Visual Studio Code extension shows a new panel containing the visualization of highlighted data based on the file that is being used visual the data. 
+
+Current Supported visualizations:
+KaSim contact maps
 
 ## Requirements
+There are no 
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+## Installation Instructions
 
 ## Extension Settings
-
+kasimviz.path (workspace setting) sets the path for where the extension will look for the index.html of the visualization.
 
 ## Known Issues
+
 very buggy atm :) lemme know of any bugs.
 
 ## Release Notes
 
-Users appreciate release notes as you update your extension.
-
 ### 1.0.0
 
-Initial release of ...
+Initial release of the kaSim Extension
 
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
 

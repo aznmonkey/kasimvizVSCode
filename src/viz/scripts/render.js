@@ -99,12 +99,10 @@ class Render {
         this.width = this.layout.dimension.width;
         this.height = this.layout.dimension.height;
         this.radius = Math.min(this.width, this.height)/2;
-        this.paddingw = 0; 
+        this.padding = this.radius/6;
         this.nodew = this.radius/6;
-        this.statew = this.radius/12;
-        this.sitew = this.radius/8;
-        this.outerRadius = this.radius - this.nodew - this.statew;
-        this.innerRadius = this.radius - this.nodew - this.statew - this.sitew;
+        this.outerRadius = this.radius - this.padding;
+        this.innerRadius = this.radius - this.nodew - this.padding;
         this.nodeRadius = 5;
         //console.log("rendering");
         this.renderDonut();
@@ -138,15 +136,10 @@ class Render {
         let nodeRadius = this.nodeRadius;
         let data = this.layout.contactMap.data;
         let layout = this.layout;
-        let width = layout.dimension.width;
-        let height = layout.dimension.height;
-    
-        let radius = Math.min(width, height)/2; 
-        let nodew = radius/6;
-        let statew = radius/12;
-        let sitew = radius/8;
-        let innerRadius = radius - nodew - statew - sitew;
-
+        let width = this.width;
+        let height = this.height;
+        let radius = this.radius;
+        let innerRadius = this.innerRadius;
         let svg = this.svg;
         let hierarchy = this.hierarchy;
         let cluster =  d3.cluster()
@@ -158,8 +151,6 @@ class Render {
             .angle(function(d) { return d.x / 180 * Math.PI; });
 
         cluster(hierarchy);
-
-        //console.log(data.packageLinks(hierarchy.leaves()));
         
         let links = svg.selectAll('.link')
             .data(data.packageLinks(hierarchy.leaves()))
@@ -188,7 +179,7 @@ class Render {
     }
 
     renderSitetoEdgeLinks() {
-        let circleRadius = 5;
+        let circleRadius = this.nodeRadius;
         let siteLine = this.svg.selectAll('.site')
             .data(this.siteList)
         .enter().append('g')
@@ -287,15 +278,12 @@ class Render {
         let nodeRadius = this.nodeRadius;
         let siteList = this.siteList;
         let layout = this.layout;
-        let width = layout.dimension.width;
-        let height = layout.dimension.height;
+        let width = this.width;
+        let height = this.height;
 
-        let radius = Math.min(width, height)/2;
-        let nodew = radius/6;
-        let statew = radius/12;
-        let sitew = radius/8;
-        let outerRadius = radius - nodew - statew;
-        let innerRadius = radius - nodew - statew - sitew;
+        let radius = this.radius;
+        let outerRadius = this.outerRadius;
+        let innerRadius = this.innerRadius;
         let paddingSite = calculateTextWidth("150%") * 2;
         let renderer = this;
 

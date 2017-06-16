@@ -7,17 +7,7 @@ import * as vscode from 'vscode';
 // your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
 
-    function checkJSON(text) {
-        if (text === "") {
-            vscode.window.showErrorMessage("No text selected");
-        }
-        try {
-            JSON.parse(text);
-        }
-        catch (e) {
-            vscode.window.showErrorMessage("Not a JSON:" + e);
-        }
-    }
+    
     // Use the console to output diagnostic information (console.log) and errors (console.error)
     // This line of code will only be executed once when your extension is activated
     
@@ -43,26 +33,36 @@ export function activate(context: vscode.ExtensionContext) {
         // Display a message box to the user
         let selection = editor.selection;
         let data = editor.document.getText(selection);
-        checkJSON(data);
-        if(data !== "") {
+        let check = checkJSON(data);
+        if(data !== "" && check) {
             data = data.toString().replace(/\r?\n/g, " ");
-<<<<<<< HEAD
             text = text.replace(/setData\(.*\)\;/, 'setData(' + data.toString() + ');');
-=======
-            text = text.replace(/setData\(.*\)/, 'setData(' + data.toString() + ');');
->>>>>>> f7a88ba4b7138c5dc046907ab960f76dfe70bf75
             fs.writeFileSync(index, text, 'utf8');
-        }
-
-        return vscode.commands.executeCommand('vscode.previewHtml', filePath, vscode.ViewColumn.Two).then((success) => {
-		}, (reason) => {
-			vscode.window.showErrorMessage(reason);
-		});
+            return vscode.commands.executeCommand('vscode.previewHtml', filePath, vscode.ViewColumn.Two).then((success) => {
+                }, (reason) => {
+                    vscode.window.showErrorMessage(reason);
+                });
+        }        
     });
 
     context.subscriptions.push(disposable);
 }
 
+function checkJSON(text) {
+        if (text === "") {
+            vscode.window.showErrorMessage("No text selected");
+            return false;
+        }
+        try {
+            JSON.parse(text);
+            return true;
+        }
+        catch (e) {
+            vscode.window.showErrorMessage("Not a JSON: " + e);
+            return false;
+        }
+    }
+    
 // this method is called when your extension is deactivated
 export function deactivate() {
 }

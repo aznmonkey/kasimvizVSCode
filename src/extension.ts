@@ -46,7 +46,11 @@ export function activate(context: vscode.ExtensionContext) {
         checkJSON(data);
         if(data !== "") {
             data = data.toString().replace(/\r?\n/g, " ");
+<<<<<<< HEAD
             text = text.replace(/setData\(.*\)\;/, 'setData(' + data.toString() + ');');
+=======
+            text = text.replace(/setData\(.*\)/, 'setData(' + data.toString() + ');');
+>>>>>>> f7a88ba4b7138c5dc046907ab960f76dfe70bf75
             fs.writeFileSync(index, text, 'utf8');
         }
 

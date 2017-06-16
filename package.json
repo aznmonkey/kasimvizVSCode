@@ -20,7 +20,18 @@
                 "command": "extension.kasimviz",
                 "title": "kasimviz"
             }
-        ]
+        ],
+        "configuration": {
+            "type": "object",
+            "title": "kasimviz configuration",
+            "properties": {
+                "kasimviz.path": {
+                    "type": "string",
+                    "default": "",
+                    "description": "path for index.html to display in the html previewer"
+                }
+            }
+        }
     },
     "scripts": {
         "vscode:prepublish": "tsc -p ./",

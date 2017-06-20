@@ -17,7 +17,6 @@ class Parser {
         // Resolve the promise with the response text
           let data = JSON.parse(httpRequest.responseText);
           resolve(parser.populateData(data));
-
         }
         else {
         // Otherwise reject with the status text

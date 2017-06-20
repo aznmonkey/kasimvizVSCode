@@ -1,15 +1,27 @@
 body {
-  width: 100%;
-  height: 100%;
   margin:0;
   -moz-osx-font-smoothing:grayscale;
   -webkit-font-smoothing:antialiased;
 }
 
-.node { cursor: pointer; }
-
-.offset {
-  transition: stroke-dashoffset 3000ms ease;
-  stroke-dashoffset: 100%;
+.link {
+  stroke: steelblue;
+  stroke-opacity: 0.4;
+  stroke-width:2;
+  fill: none;
+  pointer-events: none;
 }
 
+.node { cursor: pointer; }
+
+.tooltip {
+  position: absolute;
+  text-align: center;
+  border: 0px;
+  border-radius: 8px;
+}
+
+.stateButtonDiv {
+    position: absolute;
+    text-align: center;   
+}
